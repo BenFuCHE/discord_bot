@@ -1,12 +1,16 @@
 import discord 
 import random
-TOKEN = 'MTAzNjg2MjE4MjIwMzMyNjUzNQ.G4V6Kx.M23LG3n4kYJXzx0SFZOanixBlHSVFXMhzSCdvo'
+TOKEN = 'MTAzNjg2MjE4MjIwMzMyNjUzNQ.GUklSN.E_HmMArVWibjATpPnpjq6f9nseccTnr-u3SZA8'
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
 @client.event
 async def on_ready():
     print('We have logged in as {0.users}'.format(client))
 #1036439896354725950
-    general_channel = client.get_channel(1036439896354725950)
-    await general_channel.send("Hello")
+    #general_channel = client.get_channel(1036439896354725950)
+    #await general_channel.send("Hello")
+@bot.event
+async def on_member_join(member):
+    channel = bot.get_channel('1036439896354725950')
+    await channel.send("Hello {user}, Welcome to the server!")
 client.run(TOKEN)
