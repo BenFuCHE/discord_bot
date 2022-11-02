@@ -1,6 +1,6 @@
 import discord 
 import random
-TOKEN = ''
+TOKEN = 'MTAzNjg2MjE4MjIwMzMyNjUzNQ.G4V6Kx.M23LG3n4kYJXzx0SFZOanixBlHSVFXMhzSCdvo'
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
 @client.event
