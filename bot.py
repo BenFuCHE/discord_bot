@@ -1,6 +1,7 @@
 import discord 
 import random
-TOKEN = 'MTAzNjg2MjE4MjIwMzMyNjUzNQ.GPjAuZ.4f2m2uEOnuw_fQbxJW0ZFUuABlhTca8NiSJkg8'
+from discord.ext import commands
+TOKEN = ''
 intents = discord.Intents().all()
 client = discord.Client(intents=intents)
 
@@ -11,13 +12,18 @@ async def on_ready():
 @client.event 
 async def on_message(message):
     id = client.get_guild(1036439895905939546)
-    if message.author == client .user:
+    if message.author == client.user:
         return 
 
     if message.content.startswith('!hi'):
         await message.channel.send('hi')
     
     elif message.content == '!users':
-        await message.channel.send(f""" Number of Members {id.member_count} """)
+        await message.channel.send(f" Number of Members {id.member_count} ")
+    
+    if message.content.startswith('!help'):
+        help_command = discord.Embed(colour=0x00ff00)
+        help_command.add_field(name = 'Commands:', value = '!important dates\n!TA hours\n!Due dates', inline=False)
+        await message.channel.send(embed=help_command)
 
 client.run(TOKEN)
