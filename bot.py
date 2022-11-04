@@ -1,5 +1,5 @@
 import discord 
-TOKEN = 'MTAzNjg2MjE4MjIwMzMyNjUzNQ.G7_hyk.ZvXwLIJ8sErOg3rQu2ixCfyPj4umhUDxWwCbbY'
+TOKEN = ''
 intents = discord.Intents().all()
 intents.members = True
 client = discord.Client(intents=intents)
