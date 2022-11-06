@@ -1,9 +1,13 @@
 import discord 
+import datetime 
+import time
 TOKEN = ''
 intents = discord.Intents().all()
 intents.members = True
 client = discord.Client(intents=intents)
-
+schedule_meeting = [
+    {text': 'message', 'time': 'date':}
+]
 
 @client.event
 async def on_ready():
@@ -15,8 +19,10 @@ async def on_message(message):
     if message.author == client.user:
         return 
 
-    if message.content.startswith('!hi'):
-        await message.channel.send('hi')
+    if message.content.startswith('!TA hours'):
+        hours_command = discord.Embed()
+        await message.channel.send(colour=0xA020F0)
+        
     
     elif message.content == '!users':
         await message.channel.send(f'Number of Members: {id.member_count}')
