@@ -31,6 +31,10 @@ async def on_member_join(member):
     id = client.get_guild(1036439895905939546)
     channel = client.get_channel(1036439896354725950)
     await channel.send(f'Welcome to the server {member.mention}! ' + ':tada:'*3)
-    await member.send(f'Welcome to {id.name}, {member.name}!')
+    await member.send(f"Welcome to {id.name}, {member.name}! Here's a list of commands to use on the server:")
+    
+    help_command = discord.Embed(colour=0x00ff00)
+    help_command.add_field(name = 'Commands:', value = '!important dates\n!TA hours\n!Due dates', inline=False)
+    await member.send(embed=help_command)
 
 client.run(TOKEN)
