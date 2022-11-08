@@ -5,9 +5,6 @@ TOKEN = ''
 intents = discord.Intents().all()
 intents.members = True
 client = discord.Client(intents=intents)
-schedule_meeting = [
-    {text': 'message', 'time': 'date':}
-]
 
 @client.event
 async def on_ready():
@@ -19,11 +16,11 @@ async def on_message(message):
     if message.author == client.user:
         return 
 
-    if message.content.startswith('!TA hours'):
-        hours_command = discord.Embed()
-        await message.channel.send(colour=0xA020F0)
-        
-    
+    if message.content.startswith('!math116'):
+        hours_command = discord.Embed(name = 'Math 116')
+        hours_command.add_field(name = 'TA Hours', value = 'Tuesday: 5:30 PM - 6:45')
+        hours_command.add_field(name = 'Status' value = 'Virtual') 
+
     elif message.content == '!users':
         await message.channel.send(f'Number of Members: {id.member_count}')
     
