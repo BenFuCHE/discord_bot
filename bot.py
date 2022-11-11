@@ -20,13 +20,23 @@ async def on_message(message):
         hours_command = discord.Embed(name = 'Math 116')
         hours_command.add_field(name = 'TA Hours', value = 'Tuesday: 5:30 PM - 6:45')
         hours_command.add_field(name = 'Status' value = 'Virtual') 
+    
+    if message.content.startswith('!math115'):
+        hours_command = discord.Embed(name = 'Math 115')
+        hours_command.add_field(name = 'TA Hours', value = 'Monday: 11:30am - 12:20pm\nWednesday: 11:30am - 12:20pm\nFriday: 4:30pm - 5:20pm')
+        hours_command.add_field(name = 'Status' value = 'Office: MC 6509') 
+    
+    if message.content.startswith('!che102'):
+        hours_command = discord.Embed(name = 'CHE 102')
+        hours_command.add_field(name = 'TA Hours', value = 'Thursday: 4:00pm - 5:00pm')
+        hours_command.add_field(name = 'Status' value = 'Office: E6 5010') 
 
     elif message.content == '!users':
         await message.channel.send(f'Number of Members: {id.member_count}')
     
     if message.content.startswith('!help'):
         help_command = discord.Embed(colour=0x00ff00)
-        help_command.add_field(name = 'Commands:', value = '!important dates\n!TA hours\n!Due dates', inline=False)
+        help_command.add_field(name = 'Commands:', value = '!important dates\n!TA hours\n!Due dates\n!math116\n!math115\n!che102', inline=False)
         await message.channel.send(embed=help_command)
 
 @client.event
@@ -37,7 +47,7 @@ async def on_member_join(member):
     await member.send(f"Welcome to {id.name}, {member.name}! Here's a list of commands to use on the server:")
     
     help_command = discord.Embed(colour=0x00ff00)
-    help_command.add_field(name = 'Commands:', value = '!important dates\n!TA hours\n!Due dates', inline=False)
+    help_command.add_field(name = 'Commands:', value = '!important dates\n!TA hours\n!Due dates\n!math116\n!math115\n!che102', inline=False)
     await member.send(embed=help_command)
 
 client.run(TOKEN)
