@@ -64,8 +64,8 @@ async def on_message(message):
     
     if message.content.startswith('!setmeeting'):
         help_command = discord.Embed(title= 'Instructions', colour=0x00ff00)
-        help_command.add_field(name = '',value = '!important dates\n!Due dates', inline=False)
-        help_command.add_field(name = 'TA hours:', value='!math116\n!math115\n!che102')
+        help_command.add_field(name = 'Step 1',value = '', inline=False)
+        help_command.add_field(name = '', value='')
         await message.channel.send(embed=help_command)
 
 @client.event
@@ -76,8 +76,8 @@ async def on_member_join(member):
     await member.send(f"Welcome to {id.name}, {member.name}! Here's a list of commands to use on the server:")
     
     help_command = discord.Embed(title= 'Commands', colour=0x00ff00)
-    help_command.add_field(name = 'Step 1',value = '', )
-    help_command.add_field(name = 'T', value='!math116\n!math115\n!che102')
+    help_command.add_field(name = 'TA Hours:',value = '!math116\n!math115\n!che102\n!che100\n!che120\n!che180\n!WEEFTA', )
+    help_command.add_field(name = 'Important Dates:', value='')
     await member.send(embed=help_command)
 
 client.run(TOKEN)
