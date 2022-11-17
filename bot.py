@@ -72,13 +72,14 @@ async def on_message(message):
     if message.content.startswith('!setmeeting'):
         help_command = discord.Embed(title= 'Instructions', colour=0x00ff00)
         help_command.add_field(name = 'Step 1',value = '', inline=False)
-        help_command.add_field(name = '', value='')
+        help_command.add_field(name = 'Step 2', value='')
+        help_command.add_field(name = 'Step 3',value = '', inline=False)
         await message.channel.send(embed=help_command)
 
 @client.event
 async def on_member_join(member):
-    id = client.get_guild(1036439895905939546)
-    channel = client.get_channel(1036439896354725950)
+    id = client.get_guild(os.getenv('server_id'))
+    channel = client.get_channel(os.getenv('channel_id'))
     await channel.send(f'Welcome to the server {member.mention}! ' + ':tada:'*3)
     await member.send(f"Welcome to {id.name}, {member.name}! Here's a list of commands to use on the server:")
     
