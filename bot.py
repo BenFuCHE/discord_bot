@@ -1,5 +1,5 @@
 import discord 
-import datetime 
+from datetime import datetime
 import time
 import os
 from dotenv import load_dotenv
@@ -70,7 +70,7 @@ async def on_message(message):
         await message.channel.send(embed=help_command)
     
     if message.content.startswith('!setmeeting'):
-        help_command = discord.Embed(title= 'Instructions', colour=0x00ff00)
+        help_command = discord.Embed(title = 'Instructions', colour=0x00ff00)
         help_command.add_field(name = 'Step 1',value = '', inline=False)
         help_command.add_field(name = 'Step 2', value='')
         help_command.add_field(name = 'Step 3',value = '', inline=False)
@@ -78,14 +78,18 @@ async def on_message(message):
 
 @client.event
 async def on_member_join(member):
-    id = client.get_guild(os.getenv('server_id'))
-    channel = client.get_channel(os.getenv('channel_id'))
+    id = client.get_guild(1036439895905939546)
+    channel = client.get_channel(1036439896354725950)
     await channel.send(f'Welcome to the server {member.mention}! ' + ':tada:'*3)
     await member.send(f"Welcome to {id.name}, {member.name}! Here's a list of commands to use on the server:")
-    
-    help_command = discord.Embed(title= 'Commands', colour=0xA020F0)
-    help_command.add_field(name = 'TA Hours:',value = '!math116\n!math115\n!che102\n!che100\n!che120\n!che180\n!WEEFTA', )
-    help_command.add_field(name = 'Important Dates:', value='')
-    await member.send(embed=help_command)
+
+    welcome = discord.Embed(title = 'Welcome!', colour = discord.Color.random())
+    welcome.add_field(name= f'{member.name}', value = ':tada:')
+    await channel.send(embed=welcome)
+
+    commands = discord.Embed(title= 'Commands', colour=0xA020F0)
+    commands.add_field(name = 'TA Hours:',value = '!math116\n!math115\n!che102\n!che100\n!che120\n!che180\n!WEEFTA')
+    commands.add_field(name = 'Important Dates:', value='placeholder')
+    await member.send(embed=commands)
 
 client.run(os.getenv('bot_token'))
