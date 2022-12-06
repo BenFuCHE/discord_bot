@@ -4,7 +4,6 @@ import os
 from dotenv import load_dotenv
 import math
 from asyncio import sleep 
-import random
 
 load_dotenv()
 
@@ -24,8 +23,8 @@ def addi(x: float, y: float):
 def subt(x: float, y: float):
     return x - y
 
-def rand(x: float, y: float):
-    return random.randint(x, y)
+def divi(x: float, y: float):
+    return x/y
 
 def square(x: float):
     return math.sqrt(x)
@@ -42,7 +41,7 @@ async def on_member_join(member):
     await member.send(f"Welcome to {id.name}, {member.name}! Here's a list of commands to use on the server:")
 
     commands = discord.Embed(title= 'Commands', colour=0xA020F0)
-    commands.add_field(name = 'TA Hours:',value = '!math116\n!math115\n!che102\n!che100\n!che120\n!che180\n!weef\n!reminderdetails\n!reminder\n!cancel\nmult')
+    commands.add_field(name = 'TA Hours:',value = '!math116\n!math115\n!che102\n!che100\n!che120\n!che180\n!weef\n!reminderdetails\n!reminder\n!cancel\n!mult')
     await member.send(embed=commands)
 
 @bot.command()
@@ -61,37 +60,41 @@ async def sub(ctx, x: float, y: float):
     await ctx.send(sol)
 
 @bot.command()
-async def random(ctx, x: float, y: float):
-    sol = rand(x,y)
+async def div(ctx, x: float, y: float):
+    sol = div(x,y)
     await ctx.send(sol)
 
 @bot.command()
-async def root(ctx, x: float, y: float):
-    sol = square(x,y)
+async def root(ctx, x: float):
+    sol = square(x)
     await ctx.send(sol)
-
-@bot.command()
-async def cr(ctx):
-    await ctx.send("hi")
-
-run_loop = True
 
 @bot.command()
 async def reminder(ctx, time: int, *, x: int):
-    global run_loop
+    global a
+    a = 1 
     await ctx.send(f'```Reminder Set```')
-    while run_loop:
-        if run_loop==True:
-            await time.sleep(time)
+    while a: 
+        if a==1:
+            await sleep(time)
+        if a==2:
+            break
+        if a==1:
             await ctx.send(f'```Break Time```, {ctx.author.mention}')
-            await time.sleep(x)
+        elif a==2:
+            break 
+        if a==1:
+            await sleep(x)
+        elif a==2:
+            break 
+        if a==1:
             await ctx.send(f'```Resume```')
 
 @bot.command()
 async def cancel(ctx):
-    global run_loop
-    run_loop = False
-    await ctx.send(f'```Succesfully cancelled reminder```', {ctx.author.mention})
+    global a
+    a = 2
+    await ctx.send(f'```Succesfully cancelled reminder```')
 
 @bot.command()
 async def reminderdetails(ctx):
@@ -109,9 +112,10 @@ async def help(ctx):
 
 @bot.command()
 async def math116(ctx):
-    m116_command = discord.Embed(title= 'Math 116', colour = 0xA020F0)
-    m116_command.add_field(name = 'TA Hours', value = 'Tuesday: 5:30 PM - 6:45')
-    m116_command.add_field(name = 'Status', value = 'Virtual') 
+    m116_command = discord.Embed(title='Math 116', colour=0xA020F0)
+    m116_command.add_field(name='TA Hours', value='Monday: 11:30am - 12:20pm \nWednesday: 4:30 pm - 5:20 pm')
+    m116_command.add_field(name='Office', value='Monday: MC 6169')
+    m116_command.add_field(name='Virtual', value='Tuesday: Zoom')
     await ctx.send(embed=m116_command)
  
 @bot.command()
@@ -142,12 +146,12 @@ async def che180(ctx):
     c180_command.add_field(name = 'Status', value = 'Office: E2 1792')
     await ctx.send(embed=c180_command)
 
-@bot.comand()
+@bot.command()
 async def che120(ctx):
     c120_command = discord.Embed(title = 'CHE 120', colour = 0xA020F0)
     c120_command.add_field(name= 'Instructor Hours', value='Tuesday: 4:00pm- 6:00pm')
     c120_command.add_feild(name= 'Status', value='Office: E6 2016')
-    await ctx.send()
+    await ctx.send(embed=c120_command)
 
 @bot.command()
 async def weef(ctx):
