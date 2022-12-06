@@ -12,7 +12,6 @@ import os
 from dotenv import load_dotenv
 import math
 from asyncio import sleep
-import random
 
 load_dotenv()
 
@@ -46,8 +45,7 @@ def square(x: float):
 
 @bot.event
 async def on_ready():
-    print('We have logged in as {0.users}'.format(bot))  # Inviation to welcome the bot on the server
-
+    print('We have logged in as {0.users}'.format(bot))  # Inviation to welcome the bot on the server\
 
 @bot.event
 async def on_member_join(member):  # Creating bot ID and allowing the joining of other users onto the servers
@@ -57,21 +55,18 @@ async def on_member_join(member):  # Creating bot ID and allowing the joining of
     await member.send(f"Welcome to {id.name}, {member.name}! Here's a list of commands to use on the server:")
 
     commands = discord.Embed(title='Commands', colour=0xA020F0)  # commands variable is set for the user to see all possible commands the bot can perform
-    commands.add_field(name='TA Hours:', value='!math116\n!math115\n!che102\n!che100\n!che120\n!che180\n!weef\n!reminderdetails\n!reminder\n!cancel\nmult')
+    commands.add_field(name='TA Hours:', value='!math116\n!math115\n!che102\n!che100\n!che120\n!che180\n!weef\n!reminderdetails\n!reminder\n!cancel\n!mult')
     await member.send(embed=commands)
-
 
 @bot.command()  # Definitions to perform operiations on data type float
 async def mult(ctx, x: float, y: float):
     sol = multi(x, y)
     await ctx.send(sol)
 
-
 @bot.command()  # Bot-command is the function definition from the discord library
 async def add(ctx, x: float, y: float):
     sol = addi(x, y)
     await ctx.send(sol)
-
 
 @bot.command()
 async def sub(ctx, x: float, y: float):
@@ -80,7 +75,7 @@ async def sub(ctx, x: float, y: float):
 
 @bot.command()
 async def div(ctx, x: float, y: float):
-    sol = div(x,y)
+    sol = divi(x,y)
     await ctx.send(sol)
 
 @bot.command()
@@ -94,20 +89,22 @@ async def reminder(ctx, time: int, *, x: int):
     a = 1 
     await ctx.send(f'```Reminder Set```')
     while a: 
-        if a==1:
-            await sleep(time)
+        await sleep(time)
+
         if a==2:
             break
-        if a==1:
-            await ctx.send(f'```Break Time```, {ctx.author.mention}')
-        elif a==2:
+
+        await ctx.send(f'```Break Time```, {ctx.author.mention}')
+    
+        if a==2:
             break 
-        if a==1:
-            await sleep(x)
-        elif a==2:
+        
+        await sleep(x)
+        
+        if a==2:
             break 
-        if a==1:
-            await ctx.send(f'```Resume```')
+
+        await ctx.send(f'```Resume```',)
 
 @bot.command() #command to stop the loop 
 async def cancel(ctx):
@@ -115,22 +112,19 @@ async def cancel(ctx):
     a = 2
     await ctx.send(f'```Succesfully cancelled reminder```')
 
-
 @bot.command()
 async def reminderdetails(ctx):  # Reminder details is used to further elabaorate reminder to enter time and then take break
     embed = discord.Embed(title='How to set up a reminder')
-    embed.add_field(name='Step 1 ', value='Use the command !reminder followed by the amount of time (in seconds) between each reminder and the message. Ex !reminder 45 time to take a break!')
+    embed.add_field(name='Step 1 ', value='Use the command !reminder followed by the amount of time (in seconds) between each reminder and breaktime. Ex !reminder 10 5')
     embed.add_field(name='Step 2', value='Use the command !cancel to cancel the reminder')
     await ctx.send(embed=embed)
-
 
 @bot.command()
 async def help(ctx): # Help function is used to allow the user to see which course office hours are available
     embed = discord.Embed(title='Commands', colour=0x00ff00)
     embed.add_field(name='Dates:', value='!important dates\n!Due dates', inline=False)
-    embed.add_field(name='TA hours:', value='!math116\n!math115\n!che102\n!che100\n!che120\n!che180\n!weef\n!reminderdetails\n!reminder\n!cancel\nmult')
+    embed.add_field(name='TA hours:', value='!math116\n!math115\n!che102\n!che100\n!che120\n!che180\n!weef\n!reminderdetails\n!reminder\n!cancel\n!mult')
     await ctx.send(embed=embed)
-
 
 @bot.command() # Each course will output specfic office hours correpsonding to the course information found on learn
 async def math116(ctx): 
@@ -140,7 +134,6 @@ async def math116(ctx):
     m116_command.add_field(name='Virtual', value='Tuesday: Zoom')
     await ctx.send(embed=m116_command)
 
-
 @bot.command() # Each course will output specfic office hours correpsonding to the course information found on learn
 async def math115(ctx):
     m115_command = discord.Embed(title='Math 115', colour=0xA020F0) # Discord bot will output dates, timing and location for the MATH 115 Course
@@ -148,14 +141,12 @@ async def math115(ctx):
     m115_command.add_field(name='Status', value='Office: MC 6509')
     await ctx.send(embed=m115_command)
 
-
 @bot.command() # Each course will output specfic office hours correpsonding to the course information found on learn
 async def che102(ctx):
     c102_command = discord.Embed(title='CHE 102', colour=0xA020F0) # Discord bot will output dates, timing and location for the CHE 102 Course
     c102_command.add_field(name='TA Hours', value='Thursday: 4:00pm - 5:00pm') 
     c102_command.add_field(name='Status', value='Office: E6 5010')
     await ctx.send(embed=c102_command)
-
 
 @bot.command() # Each course will output specfic office hours correpsonding to the course information found on learn
 async def che100(ctx):
@@ -165,7 +156,6 @@ async def che100(ctx):
     c100_command.add_field(name='Office', value='Prof. Tam: QNC 5617\nProf. Moresoli: E6 4010\nBugra Birgili: E6-5110\nKishore Kandasamy: E6-5104\nChristopher Sung: E6-4120')
     await ctx.channel.send(embed=c100_command)
 
-
 @bot.command() # Each course will output specfic office hours correpsonding to the course information found on learn
 async def che180(ctx):
     c180_command = discord.Embed(title='WEEFTA', colour=0xA020F0) # Discord bot will output dates, timing and location for the CHE 180 Course
@@ -173,12 +163,12 @@ async def che180(ctx):
     c180_command.add_field(name='Status', value='Office: E2 1792')
     await ctx.send(embed=c180_command)
 
-@bot.comand() # Each course will output specfic office hours correpsonding to the course information found on learn
+@bot.command() # Each course will output specfic office hours correpsonding to the course information found on learn
 async def che120(ctx):
     c120_command = discord.Embed(title='CHE 120', colour=0xA020F0) # Discord bot will output dates, timing and location for the CHE 120 Course
     c120_command.add_field(name='Instructor Hours', value='Tuesday: 4:00pm- 6:00pm') 
-    c120_command.add_feild(name='Status', value='Office: E6 2016')
-    await ctx.send()
+    c120_command.add_field(name='Status', value='Office: E6 2016')
+    await ctx.send(embed=c120_command)
 
 @bot.command() # Each course will output specfic office hours correpsonding to the course information found on learn
 async def weef(ctx):
@@ -186,6 +176,5 @@ async def weef(ctx):
     weef_command.add_field(name='WEEFTA', value='Monday: 8:30am - 6:00pm - Friday: 8:30am - 6:00pm') 
     weef_command.add_field(name='Status', value='Office: E2 1792')
     await ctx.send(embed=weef_command)
-
 
 bot.run(os.getenv('bot_token'))  #Bot-token must be enabled in order to tell the IDE what code the bot is taking, used env to hide bot-token
